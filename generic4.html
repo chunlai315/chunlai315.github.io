@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<!--
+	
+-->
+<html>
+	<head>
+		<title>Stock price prediction and trading strategy</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Allyson Lai</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html#one" class="active">Projects</a></li>
+						<li><a href="index.html#three">Contact</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Stock Price Prediction (SARIMA & LSTM) and <br>Trading Strategy with (MACD & RSI) Indicators </h1>
+							<div align=center>
+							<a class="image "><img src="https://i.ibb.co/m0LYN3Y/HSI.jpg" alt="HSI-daily" border="0" />
+							</div>
+								<p></p>
+							<p style="color:whitesmoke">In this group project, we built two kinds of models, SARIMA and LSTM to enhance the accuracy of stock price prediction. 
+								For the dataset, we used the historic close price of Hang Seng Index from the stock exchange of Hong Kong, starting from Jan 2010 to 4 Feb 2021. 
+								After the price forecasting, we combined the results with the technical indicators MACD and RSI, to reduce the problem of lagging trading signals.
+							</p>
+							<p></p>
+								<br/><b>ARIMA Model</b>
+								<p style="color:whitesmoke">
+								ARMA models are widely used in the time series data. SARIMA, is an extension of ARIMA that supports time series data with a seasonal component. Here, the time series data has a yearly seasonal trend, so we chose to use SARIMA model in forecasting. 
+								We built static SARIMA and dynamic SARIMA with different parameters. The result of each combinations shows in below table. 
+							</p>	
+							 </p>
+							<div align=center>
+							<a class="image"><img src="https://i.ibb.co/khMLMmG/ARIMA-compare.jpg" width="400px" height="200px" alt="" /></span>
+							</div>
+							</p>
+								<br/><b>LSTM Model</b>
+								<p style="color:whitesmoke">
+									In LSTM, we built two kinds of models, one-step and multi-steps ahead. 
+									In one-step LSTM, we used the samples of the past 30 days to predict the close price of the upcoming day. 
+									In multi-step LSTM, we used the samples of the past 30 days to predict the close price of the subsequent 5 days close price.
+									The single-step LSTM shows better prediction accuracy than multi-step LSTM. 
+									In multi-step model, we can see that the first day is the easiest day to make accurate forecasting and the last day is the hardest.
+									</p>
+									<div align=center>
+										<a class="image"><img src="https://i.ibb.co/1R1mJ5D/LSTM-model.jpg", width="400px" height="200px" alt="" /></span>
+										</div>
+									</p>
+									<br/><b>Model Comparison </b>
+									<p style="color:whitesmoke">
+										From the below graphs, we can see that LSTM and dynamic SARIMAX can capture the price variations more accurately than the static SARIMAX. 
+										However, the dynamic SARIMAX runtime is the longest, because it uses all the past data to predict the close price of the upcoming day. 
+										Static SARIMA can predict the long-term trend with less computational time. In short, forecasting the one-step ahead daily price, the deep-learning based model LSTM outperforms the statistical analysis model SARIMA in this project.
+										</p>
+										<div align=center>
+											<a class="image"><a href="https://ibb.co/sPR2rVr"><img src="https://i.ibb.co/xsLDQ7Q/pred-arima.jpg" alt="pred-arima" border="0"></a>
+											</div>
+										<div align=center>
+												<a class="image"><a href="https://ibb.co/PDX7W03"><img src="https://i.ibb.co/vXy7dRg/pred-lstm.jpg" alt="pred-lstm" border="0"></a>
+												</div>
+										</p>
+										<br/><b>MACD Trading Model  </b>
+										<p style="color:whitesmoke">
+											We combine our dynamic SARIMA and LSTM models with the MACD trading methodology to conduct an auto-trade algorithm. 
+											Three settings of long period, short period and signal period are tested in this method,and the results are shown in the table below.		
+											MACD (17, 26, 9) based on dynamic ARIMA made 14 trades during the test time frame, and achieved a return of 25.01%. 
+											It was able to capture the major up-trends, and keep in the long position.
+										</p>
+										<div align=center>
+											<a class="image"><img src="https://i.ibb.co/rckNwgR/MACD.jpg" alt="pred-lstm" border="0"></a>
+											</div>
+										<p style="color:whitesmoke">
+											MACD (17, 26, 9) based on dynamic ARIMA made 14 trades during the test time frame, and achieved a return of 25.01%. 
+											It was able to capture the major up-trends, and keep in the long position.
+											</p>
+										<div align=center>
+											<a class="image"><a href="https://ibb.co/yYxVpFK"><img src="https://i.ibb.co/k9PMJ2z/MACD-arima.jpg" alt="MACD-arima" border="0"></a>
+											</div>
+										</p>
+										<br/><b>RSI Trading Model </b>
+										<p style="color:whitesmoke">
+										We combine our dynamic ARIMA and LSTM models with the RSI trading methodology to conduct an auto-trade algorithm. Two settings of rolling span, upper band and lower band are tested in this method, and the results are shown in the table below.
+										Unlike the standard RSI, exponential weights are used in our calculation for the average gain and loss.
+										Considering the strong volatility and long-run up trend of the HSI, we choose upper band of 75 and lower band of 35 for the RSI method. 
+										Dynamic ARIMA performs considerably better with a longer rolling period of 16 days.
+										</p>
+										<div align=center>
+											<a class="image"><img src="https://i.ibb.co/KNjKVjD/RSI-compare.jpg" alt="" border="0"></a>
+											</div>
+										<div align=center>
+												<a class="image"><a href="https://ibb.co/dPbHnj0"><img src="https://i.ibb.co/VgHkXJW/RSI-arimaff.jpg" alt="RSI-arimaff" border="0"></a>
+												</div>
+											</p>
+											<br/><b>Suggestions </b>
+											<p style="color:whitesmoke">
+												MACD mainly aims at capturing long run trend, RSI with short rolling period generate trading points more frequently and can catch shorter up trends during fluctuating period, having the opportunity to gain profit in short-term fluctuations but will increase the transaction cost as well.
+												We recommend adopting both MACD and RSI methods and combining them with the dynamic ARIMA and LSTM model respectively to achieve higher returns and reduce the risks.
+											</p>
+										
+							
+							
+						</div>
+						
+						
+						
+						<div align="center">
+						<a class="actions">
+						<a href="index.html#one" class="button">Back</a>
+						</div>
+						
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
